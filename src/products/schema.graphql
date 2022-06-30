@@ -1,0 +1,48 @@
+type Product{
+    id: ID!,
+    name: String!,
+    category: Category!,
+    price: String!,
+    items: [Item!]!,
+}
+
+type Category{
+    id: ID!,
+    name: String!,
+}
+
+type Item{
+    id: ID!,
+    name: String!,
+    categories: [Category!]!,
+    price: String!,
+}
+
+type Query{
+    products: [Product!]!,
+    categories: [Category!]!,
+    items: [Item!]!,
+}
+
+input NewProduct{
+    name: String!,
+    categoryId: String!,
+    price: String!,
+    itemsId: [String!]!,
+}
+
+input NewCategory{
+    name: String!,
+}
+
+input NewItem{
+    name: String!,
+    categoriesId: [String!]!,
+    price: String!,
+}
+
+type Mutation{
+    createCategory(input: NewCategory!): Category!,
+    createItem(input: NewItem!): Item!,
+    createProduct(input: NewProduct!): Product!,
+}
